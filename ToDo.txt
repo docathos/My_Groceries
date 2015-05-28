@@ -1,0 +1,36 @@
+//
+//  ToDo
+//
+//  Project 	My Groceries
+//  Created by 	Stephen Astels on 2015-02-10
+//  Copyright 	© 2015 Steve
+//  License	license
+//
+
+High -----------------------------------------------------
+
+datamodel: keep list of recordID, modification
+  - when uploading, download record and apply modification
+
+
+Medium -----------------------------------------------------
+
+change stockAislesWithPrefix to string anywhere in item.name
+
+get rid of tableview.reloadData() in
+  AllItemsViewController.swift
+  AisleViewController.swift
+
+CloudKit
+- upload seems to be working (not photos)
+
+
+- when item deleted, store CKRecordID in list in DataModel, delete on next sync
+- save photos
+
+
+Support more stores
+
+Low -----------------------------------------------------
+
+speed up dataModel.sortAllItems(): remove after moving?
