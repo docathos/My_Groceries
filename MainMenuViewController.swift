@@ -14,7 +14,7 @@ class MainMenuViewController: UITableViewController {
   
   @IBAction func syncButtonPressed(sender: UIBarButtonItem) {
     if let dataModel = dataModel {
-      dataModel.syncWithCloud()
+//      dataModel.syncWithCloud()
     }
   }
   

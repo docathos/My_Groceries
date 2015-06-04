@@ -155,7 +155,8 @@ class Item: NSObject, NSCoding {
   var updateDate: NSDate!
   var imageFileName: String? = nil
 */
-  
+
+/*
   init(record: CKRecord) {
     itemID    = record.objectForKey("name") as! NSUUID
     name      = record.objectForKey("name") as! String
@@ -176,4 +177,6 @@ class Item: NSObject, NSCoding {
     } else {
       return nil
     }
+  }
+*/
 }

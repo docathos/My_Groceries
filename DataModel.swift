@@ -17,7 +17,7 @@ class DataModel: NSObject {
   var lastCloudSync: NSDate!
   var undoList: [Item] = []
   let MaxUndoListSize = 1000
-  var updateList: [Update] = []
+ // var updateList: [Update] = []
   
   override var description: String {
     var retval = ""
@@ -201,7 +201,7 @@ class DataModel: NSObject {
   }
   
   // MARK: - CloudKit
-  
+/*
   func downloadOperation() -> CKQueryOperation {
     var predicate: NSPredicate!
     NSLog("Downloading!")
@@ -213,7 +213,7 @@ class DataModel: NSObject {
     let query = CKQuery(recordType: "Item", predicate: predicate)
     let queryOperation = CKQueryOperation(query: query)
     queryOperation.recordFetchedBlock = { record in
-      let newItem = Item(record: (record))
+      let newItem = Item(name: (record))
       var foundNewItem = false
       for (index, searchItem) in enumerate(self.allItems) {
         if searchItem.recordID == record.recordID {
@@ -320,7 +320,7 @@ class DataModel: NSObject {
       return false
     }
   }
-  
+  */
   
 }
 

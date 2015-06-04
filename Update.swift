@@ -8,7 +8,7 @@
 
 //import UIKit
 import CloudKit
-
+/*
 class Update: NSObject, NSCoding {
   var item: Item!
   var changeName: String!
@@ -23,6 +23,7 @@ class Update: NSObject, NSCoding {
     self.changeName = changeName
     self.changeTo = changeTo
   }
+*/
 /*
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(itemID, forKey: "itemID")
@@ -44,8 +45,6 @@ class Update: NSObject, NSCoding {
     imageFileName = aDecoder.decodeObjectForKey("imageFileName") as! String?
     super.init()
   }
-  */
-
-  
-  
 }
+
+*/
