@@ -9,8 +9,21 @@
 
 High -----------------------------------------------------
 
-datamodel: keep list of recordID, modification
-  - when uploading, download record and apply modification
+CloudKit:
+  - only store list of updates
+  - update:
+    - list of recipients
+    - add item / aisle to list
+    - remove item / aisle from list
+
+sync:
+  - download updates where you are in recipient list
+  - apply updates to your data
+  - if last recipient, delete updates from cloud
+    else write updates to cloud with yourself removed
+  - apply your own updates to data
+  - write your own updates with others as recipients
+
 
 
 Medium -----------------------------------------------------
