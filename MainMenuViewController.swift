@@ -58,7 +58,12 @@ class MainMenuViewController: UITableViewController {
     } else if segue.identifier == "Aisles" {
       let controller = segue.destinationViewController as! AisleViewController
       controller.dataModel = dataModel
+    } else if segue.identifier == "Sharing" {
+      let controller = segue.destinationViewController as! SharingViewController
+      controller.dataModel = dataModel
     }
+    
+    
   }
   
   

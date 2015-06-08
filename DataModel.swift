@@ -17,7 +17,11 @@ class DataModel: NSObject {
   var lastCloudSync: NSDate!
   var undoList: [Item] = []
   let MaxUndoListSize = 1000
- // var updateList: [Update] = []
+
+  var userID: String!
+  var shareWith: [String] = []
+  var sharing = false
+  // var updateList: [Update] = []
   
   override var description: String {
     var retval = ""
@@ -30,9 +34,21 @@ class DataModel: NSObject {
   // MARK: - Initialize
   
   override init() {
-    publicDatabase = CKContainer.defaultContainer().publicCloudDatabase
+    let defaultContainer = CKContainer.defaultContainer()
+    publicDatabase = defaultContainer.publicCloudDatabase
     store = Store()
+    userID = toString(random())
     super.init()
+
+    
+    /*
+    defaultContainer.fetchUserRecordIDWithCompletionHandler({
+      userID, error in
+      if (error == nil) {
+        self.userRecordID = userID.description
+      }
+    })
+    */
   }
   
   // MARK: - helper functions

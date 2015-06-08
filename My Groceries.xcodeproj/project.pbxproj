@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		010EFF171B2131150027689B /* SharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010EFF161B2131150027689B /* SharingViewController.swift */; };
 		012071781AC092E2001CD006 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012071771AC092E2001CD006 /* ItemDetailViewController.swift */; };
 		012B39DA1AD9F186005FDE63 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012B39D91AD9F186005FDE63 /* Update.swift */; };
 		015CCA671A8EE50A00D2C865 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015CCA661A8EE50A00D2C865 /* CloudKit.framework */; };
@@ -40,6 +41,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		010EFF161B2131150027689B /* SharingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingViewController.swift; sourceTree = "<group>"; };
 		012071771AC092E2001CD006 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		012B39D91AD9F186005FDE63 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		015CCA651A8EE50400D2C865 /* My Groceries.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Groceries.entitlements"; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 				015CCA661A8EE50A00D2C865 /* CloudKit.framework */,
 				01C576891A8AF2EA001BB68D /* ToDo.txt */,
 				017B70911A829CFC008CF43D /* Main.storyboard */,
+				010EFF161B2131150027689B /* SharingViewController.swift */,
 				019284DC1AC0677500B27954 /* MainMenuViewController.swift */,
 				017B70AD1A829E29008CF43D /* ChecklistViewController.swift */,
 				01F5C1D11AC248110013A1E4 /* ChecklistImageViewController.swift */,
@@ -286,6 +289,7 @@
 				017B70AE1A829E29008CF43D /* ChecklistViewController.swift in Sources */,
 				019B0BB91A88394400D5F91B /* EditItemViewController.swift in Sources */,
 				01CFB3601A83F16000CFBF2B /* AllItemsViewController.swift in Sources */,
+				010EFF171B2131150027689B /* SharingViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
