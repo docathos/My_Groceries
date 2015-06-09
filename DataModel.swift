@@ -13,15 +13,10 @@ import MobileCoreServices
 class DataModel: NSObject {
   var allItems: [Item] = []
   var store: Store!
-  var publicDatabase: CKDatabase?
   var lastCloudSync: NSDate!
   var undoList: [Item] = []
   let MaxUndoListSize = 1000
-
-  var userID: String!
-  var shareWith: [String] = []
-  var sharing = false
-  // var updateList: [Update] = []
+  var sharingModel: SharingModel!
   
   override var description: String {
     var retval = ""
@@ -34,21 +29,9 @@ class DataModel: NSObject {
   // MARK: - Initialize
   
   override init() {
-    let defaultContainer = CKContainer.defaultContainer()
-    publicDatabase = defaultContainer.publicCloudDatabase
     store = Store()
-    userID = toString(random())
+    sharingModel = SharingModel()
     super.init()
-
-    
-    /*
-    defaultContainer.fetchUserRecordIDWithCompletionHandler({
-      userID, error in
-      if (error == nil) {
-        self.userRecordID = userID.description
-      }
-    })
-    */
   }
   
   // MARK: - helper functions
@@ -199,6 +182,7 @@ class DataModel: NSObject {
     archiver.encodeObject(lastCloudSync, forKey: "lastCloudSync")
     archiver.encodeObject(allItems, forKey: "allItems")
     archiver.encodeObject(store, forKey: "store")
+    archiver.encodeObject(sharingModel, forKey: "sharingModel")
     archiver.finishEncoding()
     data.writeToFile(dataFilePath(), atomically: true)
   }
@@ -211,6 +195,7 @@ class DataModel: NSObject {
         lastCloudSync = unarchiver.decodeObjectForKey("lastCloudSync") as! NSDate!
         allItems = unarchiver.decodeObjectForKey("allItems") as! [Item]
         store = unarchiver.decodeObjectForKey("store") as! Store
+        sharingModel = unarchiver.decodeObjectForKey("sharingModel") as! SharingModel
         unarchiver.finishDecoding()
       }
     }

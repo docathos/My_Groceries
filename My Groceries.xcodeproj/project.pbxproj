@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		010EFF171B2131150027689B /* SharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010EFF161B2131150027689B /* SharingViewController.swift */; };
 		012071781AC092E2001CD006 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012071771AC092E2001CD006 /* ItemDetailViewController.swift */; };
-		012B39DA1AD9F186005FDE63 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012B39D91AD9F186005FDE63 /* Update.swift */; };
 		015CCA671A8EE50A00D2C865 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015CCA661A8EE50A00D2C865 /* CloudKit.framework */; };
 		017B708E1A829CFC008CF43D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B708D1A829CFC008CF43D /* AppDelegate.swift */; };
 		017B70931A829CFC008CF43D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 017B70911A829CFC008CF43D /* Main.storyboard */; };
@@ -19,11 +18,13 @@
 		017B70AE1A829E29008CF43D /* ChecklistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B70AD1A829E29008CF43D /* ChecklistViewController.swift */; };
 		017B70B01A829EDB008CF43D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B70AF1A829EDB008CF43D /* Item.swift */; };
 		017B70B21A829F44008CF43D /* Aisle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B70B11A829F44008CF43D /* Aisle.swift */; };
+		0180E5341B252D6000C6B500 /* SharingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0180E5331B252D6000C6B500 /* SharingModel.swift */; };
 		019284DD1AC0677500B27954 /* MainMenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019284DC1AC0677500B27954 /* MainMenuViewController.swift */; };
 		019B0BB91A88394400D5F91B /* EditItemViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 019B0BB81A88394400D5F91B /* EditItemViewController.swift */; };
 		01A9EC481A852B4100F0F8F1 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9EC471A852B4100F0F8F1 /* DataModel.swift */; };
 		01A9EC4A1A85B0E600F0F8F1 /* AisleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01A9EC491A85B0E600F0F8F1 /* AisleViewController.swift */; };
 		01C5768A1A8AF2EA001BB68D /* ToDo.txt in Resources */ = {isa = PBXBuildFile; fileRef = 01C576891A8AF2EA001BB68D /* ToDo.txt */; };
+		01CA51281B267AD1009E4C6A /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CA51271B267AD1009E4C6A /* Update.swift */; };
 		01CFB3601A83F16000CFBF2B /* AllItemsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB35F1A83F16000CFBF2B /* AllItemsViewController.swift */; };
 		01CFB3631A83F58200CFBF2B /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01CFB3621A83F58200CFBF2B /* Store.swift */; };
 		01D979FC1A89A27400AC6D18 /* EditAisleViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D979FB1A89A27400AC6D18 /* EditAisleViewController.swift */; };
@@ -43,7 +44,6 @@
 /* Begin PBXFileReference section */
 		010EFF161B2131150027689B /* SharingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingViewController.swift; sourceTree = "<group>"; };
 		012071771AC092E2001CD006 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
-		012B39D91AD9F186005FDE63 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		015CCA651A8EE50400D2C865 /* My Groceries.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Groceries.entitlements"; sourceTree = "<group>"; };
 		015CCA661A8EE50A00D2C865 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		017B70881A829CFC008CF43D /* My Groceries.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "My Groceries.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -58,11 +58,13 @@
 		017B70AD1A829E29008CF43D /* ChecklistViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChecklistViewController.swift; sourceTree = "<group>"; };
 		017B70AF1A829EDB008CF43D /* Item.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		017B70B11A829F44008CF43D /* Aisle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Aisle.swift; sourceTree = "<group>"; };
+		0180E5331B252D6000C6B500 /* SharingModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingModel.swift; sourceTree = "<group>"; };
 		019284DC1AC0677500B27954 /* MainMenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainMenuViewController.swift; sourceTree = "<group>"; };
 		019B0BB81A88394400D5F91B /* EditItemViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditItemViewController.swift; sourceTree = "<group>"; };
 		01A9EC471A852B4100F0F8F1 /* DataModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		01A9EC491A85B0E600F0F8F1 /* AisleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AisleViewController.swift; sourceTree = "<group>"; };
 		01C576891A8AF2EA001BB68D /* ToDo.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = ToDo.txt; sourceTree = "<group>"; };
+		01CA51271B267AD1009E4C6A /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		01CFB35F1A83F16000CFBF2B /* AllItemsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AllItemsViewController.swift; sourceTree = "<group>"; };
 		01CFB3621A83F58200CFBF2B /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		01D979FB1A89A27400AC6D18 /* EditAisleViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditAisleViewController.swift; sourceTree = "<group>"; };
@@ -160,10 +162,11 @@
 			isa = PBXGroup;
 			children = (
 				01A9EC471A852B4100F0F8F1 /* DataModel.swift */,
+				0180E5331B252D6000C6B500 /* SharingModel.swift */,
+				01CA51271B267AD1009E4C6A /* Update.swift */,
 				01CFB3621A83F58200CFBF2B /* Store.swift */,
 				017B70B11A829F44008CF43D /* Aisle.swift */,
 				017B70AF1A829EDB008CF43D /* Item.swift */,
-				012B39D91AD9F186005FDE63 /* Update.swift */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -277,7 +280,6 @@
 			files = (
 				01F5C1D21AC248110013A1E4 /* ChecklistImageViewController.swift in Sources */,
 				017B70B21A829F44008CF43D /* Aisle.swift in Sources */,
-				012B39DA1AD9F186005FDE63 /* Update.swift in Sources */,
 				01A9EC4A1A85B0E600F0F8F1 /* AisleViewController.swift in Sources */,
 				012071781AC092E2001CD006 /* ItemDetailViewController.swift in Sources */,
 				019284DD1AC0677500B27954 /* MainMenuViewController.swift in Sources */,
@@ -285,6 +287,8 @@
 				01A9EC481A852B4100F0F8F1 /* DataModel.swift in Sources */,
 				017B70B01A829EDB008CF43D /* Item.swift in Sources */,
 				01D979FC1A89A27400AC6D18 /* EditAisleViewController.swift in Sources */,
+				0180E5341B252D6000C6B500 /* SharingModel.swift in Sources */,
+				01CA51281B267AD1009E4C6A /* Update.swift in Sources */,
 				01CFB3631A83F58200CFBF2B /* Store.swift in Sources */,
 				017B70AE1A829E29008CF43D /* ChecklistViewController.swift in Sources */,
 				019B0BB91A88394400D5F91B /* EditItemViewController.swift in Sources */,

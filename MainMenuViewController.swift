@@ -60,7 +60,7 @@ class MainMenuViewController: UITableViewController {
       controller.dataModel = dataModel
     } else if segue.identifier == "Sharing" {
       let controller = segue.destinationViewController as! SharingViewController
-      controller.dataModel = dataModel
+      controller.sharingModel = dataModel.sharingModel
     }
     
     

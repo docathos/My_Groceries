@@ -9,7 +9,7 @@
 import UIKit
 
 class SharingViewController: UITableViewController, UITextFieldDelegate {
-  var dataModel: DataModel!
+  var sharingModel: SharingModel!
   
   @IBOutlet weak var userIDTextField: UITextField!
   
@@ -25,11 +25,9 @@ class SharingViewController: UITableViewController, UITextFieldDelegate {
   
   func textFieldShouldReturn(textField: UITextField) -> Bool {
     if count(textField.text) > 0 {
-      dataModel.shareWith.append(textField.text)
-      dataModel.saveDataModel()
+      sharingModel.shareWith.append(textField.text)
     } else {
-      dataModel.shareWith = []
-      dataModel.saveDataModel()
+      sharingModel.shareWith = []
     }
     textField.resignFirstResponder()
     return true
@@ -50,15 +48,15 @@ class SharingViewController: UITableViewController, UITextFieldDelegate {
     
     tableView.allowsSelection = false;
     
-    if (dataModel.userID) == nil {
+    if (sharingModel.userID) == nil {
       userIDTextField.text = "None - logon to iCloud"
     } else {
-      userIDTextField.text =  dataModel.userID
+      userIDTextField.text =  sharingModel.userID
     }
-    if (dataModel.shareWith) == [] {
+    if (sharingModel.shareWith) == [] {
       shareWithTextField.text = ""
     } else {
-      shareWithTextField.text = dataModel.shareWith[0]
+      shareWithTextField.text = sharingModel.shareWith[0]
     }
     // Uncomment the following line to preserve selection between presentations
     // self.clearsSelectionOnViewWillAppear = false
