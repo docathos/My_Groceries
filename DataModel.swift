@@ -57,14 +57,17 @@ class DataModel: NSObject {
   
   func setupDemo() {
     println("Reset to Demo!")
-    let aisleNames = ["Fruit", "Cheese", "Unknown"]
     allItems = []
+    undoList = []
+    sharingModel = SharingModel()
+    lastCloudSync = nil
+    let aisleNames = ["Fruit", "Cheese", "Unknown"]
     store = Store(name: "Groceries", aisles: aisleNames)
     addItem("apples", toAisle: "Fruit")
-//    addItem("bananas", toAisle: "Fruit")
-//    addItem("cheddar", toAisle: "Cheese")
-//    addItem("feta", toAisle: "Cheese")
-//    addItem("blue", toAisle: "Cheese")
+    addItem("bananas", toAisle: "Fruit")
+    addItem("cheddar", toAisle: "Cheese")
+    addItem("feta", toAisle: "Cheese")
+    addItem("blue", toAisle: "Cheese")
     sortAllItems()
     saveDataModel()
     stockAislesFromChecklist()
@@ -84,13 +87,19 @@ class DataModel: NSObject {
     if undoList.count > 0 {
       let item = undoList.removeLast()
       item.inList = true
+      addUpdate("addToList", item: item)
       item.updateDate = NSDate()
       return item
     } else {
       return nil
     }
   }
+
+  // MARK: - Updates
   
+  func addUpdate(type: String, item: Item) {
+    sharingModel.updateList.append(Update(type: type, item: item))
+  }
   // MARK: - Items and aisles
   
   func findItem(name: String) -> Int? {

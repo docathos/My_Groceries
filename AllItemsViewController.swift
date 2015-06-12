@@ -122,6 +122,11 @@ class AllItemsViewController: UITableViewController, UITextFieldDelegate, ItemDe
     if let cell = tableView.cellForRowAtIndexPath(indexPath) {
       let aisle = dataModel.store.aisles[indexPath.section]
       let item = aisle.items[indexPath.row]
+      if item.inList {
+        dataModel.addUpdate("removeFromList", item: item)
+      } else {
+        dataModel.addUpdate("addToList", item: item)
+      }
       item.toggleInList()
       configureCheckmarkForCell(cell, withItem: item)
       tableView.deselectRowAtIndexPath(indexPath, animated: true)
@@ -154,6 +159,7 @@ class AllItemsViewController: UITableViewController, UITextFieldDelegate, ItemDe
     let destAisle = dataModel.store.aisles[destinationIndexPath.section]
     let item = sourceAisle.items[sourceIndexPath.row]
     item.aisleName = dataModel.store.aisleOrder[destinationIndexPath.section]
+    dataModel.addUpdate("moveItem", item: item)
     item.updateDate = NSDate()
     sourceAisle.items.removeAtIndex(sourceIndexPath.row)
     destAisle.items.insert(item, atIndex: destinationIndexPath.row)
@@ -177,6 +183,7 @@ class AllItemsViewController: UITableViewController, UITextFieldDelegate, ItemDe
       if let indexPath = tableView.indexPathForCell(sender as! UITableViewCell) {
         let item = dataModel.store.aisles[indexPath.section].items[indexPath.row]
         controller.itemToEdit = item
+        controller.dataModel = dataModel
       }
     }
   }

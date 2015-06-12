@@ -93,6 +93,7 @@ class ChecklistViewController: UITableViewController {
       let aisle = dataModel.store.aisles[indexPath.section]
       let item = aisle.items[indexPath.row]
       item.toggleInList()
+      dataModel.addUpdate("removeFromList", item: item)
       dataModel.addToUndo(item)
       setUndoButton()
       aisle.items.removeAtIndex(indexPath.row)

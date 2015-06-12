@@ -21,9 +21,9 @@ class ItemDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
   @IBOutlet weak var imageView: UIImageView!
   @IBOutlet weak var removeImageButton: UIButton!
   
-  
   weak var delegate: ItemDetailViewControllerDelegate?
   var itemToEdit: Item!
+  var dataModel: DataModel!
   var image: UIImage? = nil
   
   @IBAction func removeImage(sender: UIButton) {
@@ -39,6 +39,9 @@ class ItemDetailViewController: UIViewController, UITextFieldDelegate, UIImagePi
   
   @IBAction func done() {
     if let itemToEdit = itemToEdit {
+      if itemToEdit.name != textField.text {
+        dataModel.addUpdate("renameTo:"+textField.text, item: itemToEdit)
+      }
       itemToEdit.name = textField.text
       if let image = image {
         itemToEdit.saveImage(image)

@@ -11,13 +11,22 @@ High -----------------------------------------------------
 
 CloudKit:
   - only store list of updates
-  - update:
-    - list of recipients
-    - add item / aisle to list
-    - remove item / aisle from list
+  - updates have a recipient list
+  - update when:
+    - items
+      - add item to list
+      - remove item from list
+      - change item spelling
+      - move item to another aisle
+    - aisles
+      - rename aisle
+      - add or reorder aisle
+  - when start sharing with someone
+    - aisle order
+    - all items in list
 
 sync:
-  - download updates where you are in recipient list
+  - download updates for you
   - apply updates to your data
   - if last recipient, delete updates from cloud
     else write updates to cloud with yourself removed

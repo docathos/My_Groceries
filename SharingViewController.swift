@@ -46,10 +46,14 @@ class SharingViewController: UITableViewController, UITextFieldDelegate {
   override func viewDidLoad() {
     super.viewDidLoad()
     
+    for update in sharingModel.updateList {
+      print(update.description)
+    }
+    
     tableView.allowsSelection = false;
     
     if (sharingModel.userID) == nil {
-      userIDTextField.text = "None - logon to iCloud"
+      userIDTextField.text = "None (?)"
     } else {
       userIDTextField.text =  sharingModel.userID
     }
