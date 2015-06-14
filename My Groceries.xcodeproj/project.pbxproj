@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		010EFF171B2131150027689B /* SharingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 010EFF161B2131150027689B /* SharingViewController.swift */; };
+		011E9CF21B2BA797006D0CF2 /* DataModel2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 011E9CF11B2BA797006D0CF2 /* DataModel2.swift */; };
 		012071781AC092E2001CD006 /* ItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012071771AC092E2001CD006 /* ItemDetailViewController.swift */; };
 		015CCA671A8EE50A00D2C865 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 015CCA661A8EE50A00D2C865 /* CloudKit.framework */; };
 		017B708E1A829CFC008CF43D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 017B708D1A829CFC008CF43D /* AppDelegate.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		010EFF161B2131150027689B /* SharingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharingViewController.swift; sourceTree = "<group>"; };
+		011E9CF11B2BA797006D0CF2 /* DataModel2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataModel2.swift; sourceTree = "<group>"; };
 		012071771AC092E2001CD006 /* ItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItemDetailViewController.swift; sourceTree = "<group>"; };
 		015CCA651A8EE50400D2C865 /* My Groceries.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = "My Groceries.entitlements"; sourceTree = "<group>"; };
 		015CCA661A8EE50A00D2C865 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
@@ -162,6 +164,7 @@
 			isa = PBXGroup;
 			children = (
 				01A9EC471A852B4100F0F8F1 /* DataModel.swift */,
+				011E9CF11B2BA797006D0CF2 /* DataModel2.swift */,
 				0180E5331B252D6000C6B500 /* SharingModel.swift */,
 				01CA51271B267AD1009E4C6A /* Update.swift */,
 				01CFB3621A83F58200CFBF2B /* Store.swift */,
@@ -283,6 +286,7 @@
 				01A9EC4A1A85B0E600F0F8F1 /* AisleViewController.swift in Sources */,
 				012071781AC092E2001CD006 /* ItemDetailViewController.swift in Sources */,
 				019284DD1AC0677500B27954 /* MainMenuViewController.swift in Sources */,
+				011E9CF21B2BA797006D0CF2 /* DataModel2.swift in Sources */,
 				017B708E1A829CFC008CF43D /* AppDelegate.swift in Sources */,
 				01A9EC481A852B4100F0F8F1 /* DataModel.swift in Sources */,
 				017B70B01A829EDB008CF43D /* Item.swift in Sources */,

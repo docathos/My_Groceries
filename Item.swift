@@ -13,98 +13,55 @@ import CloudKit
 
 class Item: NSObject, NSCoding {
   var name = ""
-  var inList = false
-  var aisleName = ""
-  var recordID: CKRecordID!
-  var updateDate: NSDate!
+  var inList = true
   var imageFileName: String? = nil
-  var itemID: NSUUID!
+  
+  // MARK: - Init
+  
+  override init() {
+    super.init()
+  }
+  
+  init(name: String, aisle: Aisle, inList: Bool) {
+    self.name = name
+    self.inList = inList
+    super.init()
+  }
+  
+  init(name: String, aisle: Aisle) {
+    self.name = name
+    super.init()
+  }
+  
+  init(name: String) {
+    self.name = name
+    super.init()
+  }
 
+  // MARK: - description
   
   override var description: String {
-    var retval = aisleName + ": " + name + " : "
-    if let recordID = recordID {
-      retval += "has CK"
-    } else {
-      retval += "no  CK"
-    }
+    var retval = name + " : "
     if inList {
       retval += " ** "
     } else {
       retval += "    "
     }
-    if let updateDate=updateDate {
-      retval += "updated \(updateDate)"
-    }
     return retval
-  }
-
-  // MARK: - New functions
-  
-  func toggleInList() {
-    inList = !inList
-    updateDate = NSDate()
   }
   
   // MARK: - NSCoding
-  
-  /*
-  var name = ""
-  var inList = false
-  var aisleName = ""
-  var cloudKitRecord: CKRecord!
-  var updateDate: NSDate!
-  var imageFileName: String? = nil
-  */
 
   func encodeWithCoder(aCoder: NSCoder) {
     aCoder.encodeObject(name, forKey: "name")
-    aCoder.encodeObject(updateDate, forKey: "updateDate")
     aCoder.encodeBool(inList, forKey: "inList")
-    aCoder.encodeObject(aisleName, forKey: "aisleName")
-    aCoder.encodeObject(recordID  , forKey: "recordID")
     aCoder.encodeObject(imageFileName, forKey: "imageFileName")
   }
   
   required init(coder aDecoder: NSCoder) {
     name = aDecoder.decodeObjectForKey("name") as! String
-    updateDate = aDecoder.decodeObjectForKey("updateDate") as! NSDate
     inList = aDecoder.decodeBoolForKey("inList")
-    aisleName = aDecoder.decodeObjectForKey("aisleName") as! String
-    recordID = aDecoder.decodeObjectForKey("recordID") as! CKRecordID!
     imageFileName = aDecoder.decodeObjectForKey("imageFileName") as! String?
-    super.init()
-  }
-  
-  // MARK: - Init
-  
-  override init() {
-    self.itemID = NSUUID()
-    updateDate = NSDate()
-    super.init()
-  }
-  
-  init(name: String, aisleName: String, inList: Bool) {
-    self.itemID = NSUUID()
-    self.name = name
-    self.aisleName = aisleName
-    self.inList = inList
-    updateDate = NSDate()
-    super.init()
-  }
-
-  init(name: String, aisleName: String) {
-    self.itemID = NSUUID()
-    self.name = name
-    self.aisleName = aisleName
-    updateDate = NSDate()
-    super.init()
-  }
-
-  init(name: String) {
-    self.itemID = NSUUID()
-    self.name = name
-    updateDate = NSDate()
     super.init()
   }
   
@@ -145,38 +102,4 @@ class Item: NSObject, NSCoding {
       return nil
     }
   }
-
-// MARK: - CloudKit
-/*
-  var name = ""
-  var inList = false
-  var aisleName = ""
-  var cloudKitRecord: CKRecord!
-  var updateDate: NSDate!
-  var imageFileName: String? = nil
-*/
-
-/*
-  init(record: CKRecord) {
-    itemID    = record.objectForKey("name") as! NSUUID
-    name      = record.objectForKey("name") as! String
-    inList    = record.objectForKey("inList") as! Bool
-    aisleName = record.objectForKey("aisleName") as! String
-    updateDate = record.modificationDate
-    recordID = record.recordID
-  }
-
-  func makeRecord() -> CKRecord! {
-    if recordID == nil {
-      var record = CKRecord(recordType: "Item")
-      record.setObject(itemID, forKey: "itemID")
-      record.setObject(name, forKey: "name")
-      record.setObject(inList, forKey: "inList")
-      record.setObject(aisleName, forKey: "aisleName")
-      return record
-    } else {
-      return nil
-    }
-  }
-*/
 }
