@@ -29,7 +29,7 @@ class DataModel: NSObject {
     super.init()
   }
   
-  // MARK: - helper
+  // MARK: - find items and aisles
   
   func findAisleNamed(name: String) -> Aisle? {
     for aisle in aisles {
@@ -69,15 +69,35 @@ class DataModel: NSObject {
     }
   }
   
-  // MARK: - Model functions
+  // MARK: - Basic API: add, move, remove items and aisles
   
-  func addNewItemNamed(name: String) {
-    var aisle = findAisle("Unknown")
+  func addNewAisleNamed(name: String) {
+    assert (aisles.last?.name == "Unknown")
+    let aisle = Aisle(name: name)
+    aisles.insert(aisle, atIndex: aisles.count - 1)
+  }
+  
+  func removeAisleNamed(name: String) {
+    let aisle = findAisleNamed(name)!
+    aisles.removeAtIndex(find(aisles, aisle)!)
+  }
+  
+  func addNewItemNamed(itemName: String, toAisleNamed aisleName: String) {
+    var aisle = findAisleNamed(aisleName)
     if aisle == nil {
-      aisle = Aisle(name: "Unknown")
+      aisle = Aisle(name: aisleName)
       aisles.append(aisle!)
     }
-    aisle!.items.append(Item(name: name))
+    aisle!.items.append(Item(name: itemName))
+  }
+  
+  func addNewItemNamed(name: String) {
+    addNewItemNamed(name, toAisleNamed: "Unknown")
+  }
+  
+  func removeItemNamed(name: String) {
+    let (item, aisle) = findItemAndAisle(name)!
+    aisle.items.removeAtIndex(find(aisle.items, item)!)
   }
   
   func moveItem(item: Item, toAisle aisle: Aisle) {
@@ -94,8 +114,8 @@ class DataModel: NSObject {
   }
   
   func moveItemNamed(itemName: String, toAisleNamed aisleName: String) {
-    if let item = findItem(itemName) {
-      if let newAisle = findAisle(aisleName) {
+    if let item = findItemNamed(itemName) {
+      if let newAisle = findAisleNamed(aisleName) {
         moveItem(item, toAisle: newAisle)
       } else {
         assert(false)
@@ -110,7 +130,7 @@ class DataModel: NSObject {
   }
   
   func renameItemNamed(oldName: String, toName newName: String) {
-    if let item = findItem(oldName) {
+    if let item = findItemNamed(oldName) {
       renameItem(item, toName: newName)
     }
     else {
@@ -123,7 +143,7 @@ class DataModel: NSObject {
   }
   
   func renameAisleNamed(oldName: String, toName newName: String) {
-    if let aisle = findAisle(oldName) {
+    if let aisle = findAisleNamed(oldName) {
       renameAisle(aisle, toName: newName)
     } else {
       assert(false)
@@ -139,162 +159,69 @@ class DataModel: NSObject {
   }
   
   func moveAisleNamed(name: String, toIndex newIndex: Int) {
-    if let aisle = findAisle(name) {
+    if let aisle = findAisleNamed(name) {
       moveAisle(aisle, toIndex: newIndex)
     } else {
       assert(false)
     }
   }
   
+  func addToUndoItemNamed(name: String) {
+    undoList.append(findItemNamed(name)!)
+  }
   
-  
+  // returns item and aisle names
+  // TODO: what if undo, then remove that item??
+  func undo() -> (String, String)? {
+    if undoList.count == 0 {
+      return nil
+    } else {
+      let item = undoList.removeLast()
+      item.inList = true
+      let aisle = findAisleForItem(item)!
+      //      addUpdate("addToList", item: item)
+      return (item.name, aisle.name)
+    }
+  }
   
   // MARK: - tableview related
 
-  func getIndexpathFor(item: Item) -> (NSIndexPath?, Bool) {
-    let section = find(aisles, item.aisle)
-    let row = find(item.aisle.items, item)
-        if let row = row {
-          let indexPath = NSIndexPath(forRow: row, inSection: section!)
-          if item.aisle.items.count == 1 {
-            return (indexPath, true)
-          } else {
-            return (indexPath, false)
-          }
-        }
-    return (nil, false)
+  func numberOfAisles() -> Int {
+    return aisles.count
   }
+  
+  func numberOfItemsInAisleIndexed(index: Int) -> Int {
+    return aisles[index].items.count
+  }
+  
+  // second return value is whether item is only item in section
+  func getIndexpathForItemNamed(name: String) -> (NSIndexPath, Bool) {
+    let (item, aisle) = findItemAndAisle(name)!
+    let section = find(aisles, aisle)!
+    let row = find(aisle.items, item)!
+    let indexPath = NSIndexPath(forRow: row, inSection: section)
+    if aisle.items.count == 1 {
+      return (indexPath, true)
+    } else {
+        return (indexPath, false)
+    }
+  }
+
+  // MARK: - Debug related
   
   func setupDemo() {
     println("Reset to Demo!")
-    items = []
+    aisles = [Aisle(name: "Unknown")]
     undoList = []
-    aisles = []
-    aisles.insert(Aisle(name: "Fruit"), atIndex: 0)
-    aisles.insert(Aisle(name: "Cheese"), atIndex: 1)
-
-    addItem("apples", toAisle: "Fruit")
-    addItem("bananas", toAisle: "Fruit")
-    addItem("cheddar", toAisle: "Cheese")
-    addItem("feta", toAisle: "Cheese")
-    addItem("blue", toAisle: "Cheese")
-//    sortAllItems()
+    addNewItemNamed("apples", toAisleNamed: "Fruit")
+    addNewItemNamed("bananas", toAisleNamed: "Fruit")
+    addNewItemNamed("cheddar", toAisleNamed: "Cheese")
+    addNewItemNamed("feta", toAisleNamed: "Cheese")
+    addNewItemNamed("blue", toAisleNamed: "Cheese")
     saveDataModel()
-//    stockAislesFromChecklist()
     print(description)
   }
   
-  // MARK: - Undo
-  
-  func addToUndo(item: Item) {
-    undoList.append(item)
-  }
-  
-  func undo() -> Item? {
-    if undoList.count > 0 {
-      let item = undoList.removeLast()
-      item.inList = true
-      addUpdate("addToList", item: item)
-      return item
-    } else {
-      return nil
-    }
-  }
-
-  // MARK: - Updates
- /*
-  func addUpdate(type: String, item: Item) {
-    sharingModel.updateList.append(Update(type: type, item: item))
-  }
-*/
-  
-  // MARK: - Items and aisles
-  
-  func findItem(name: String) -> Item? {
-    for item in items {
-      if item.name.lowercaseString == name.lowercaseString {
-        return item
-      }
-    }
-    return nil
-  }
-
-  func findAisle(name: String) -> Aisle? {
-    for aisle in aisles {
-      if aisle.name.lowercaseString == name.lowercaseString {
-        return aisle
-      }
-    }
-    return nil
-  }
-  
-  func addItem(item: Item, toAisle aisle: Aisle) {
-    item.aisle = aisle
-    aisle.items.append(item)
-  }
-  
-  func addItem(name: String, toAisleNamed aisleName: String) {
-    let item = findItem(name)
-    let newAisle = findAisle(aisleName)
-    assert((item != nil) && (newAisle != nil))
-    REMOVE ITEM FROM item?.aisle
-    item!.aisle = newAisle
-    newAisle!.items.append(item!)
-  }
-  
-  
-  func addItem(name: String) {
-    let index = findItem(name)
-    if let index = index {
-      allItems[index].inList = true
-    } else {
-      addItem(name, toAisle: "Unknown")
-    }
-  }
-
-  func deleteItem(name: String, fromAisle: String) {
-    for n in 0...allItems.count {
-      if allItems[n].name == name && allItems[n].aisleName == fromAisle {
-        let itemToDelete = allItems[n]
-        let undoIdx = find(undoList, itemToDelete)
-        if let undoIdx = undoIdx {
-          undoList.removeAtIndex(undoIdx)
-        }
-        allItems.removeAtIndex(n)
-        break
-      }
-    }
-  }
-  
-  // sort by store.aisleOrder
-  func sortAllItems() {
-    var newItems: [Item] = []
-    for aisle in store.aisleOrder {
-      for item in allItems {
-        if item.aisleName == aisle {
-          newItems.append(item)
-        }
-      }
-    }
-    allItems = newItems
-  }
-  
-  func stockAislesFromAllItems() {
-    store.stockAisles(allItems, requiredInList: false)
-  }
-  
-  func stockAislesFromChecklist() {
-    store.stockAisles(allItems, requiredInList: true)
-
-  }
-  
-  func stockAislesWithPrefix(prefix: String) {
-    store.stockAisles(allItems, withPrefix: prefix)
-  }
-  func stockEverything() {
-    store.stockEverything(allItems)
-  }
-
   // MARK: - NSCoder
   
   func documentsDirectory() -> String {
@@ -309,10 +236,7 @@ class DataModel: NSObject {
   func saveDataModel() {
     let data=NSMutableData()
     let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
-    archiver.encodeObject(lastCloudSync, forKey: "lastCloudSync")
-    archiver.encodeObject(allItems, forKey: "allItems")
-    archiver.encodeObject(store, forKey: "store")
-    archiver.encodeObject(sharingModel, forKey: "sharingModel")
+    archiver.encodeObject(aisles, forKey: "aisles")
     archiver.finishEncoding()
     data.writeToFile(dataFilePath(), atomically: true)
   }
@@ -322,17 +246,21 @@ class DataModel: NSObject {
     if NSFileManager.defaultManager().fileExistsAtPath(path) {
       if let data=NSData(contentsOfFile: path) {
         let unarchiver = NSKeyedUnarchiver(forReadingWithData: data)
-        lastCloudSync = unarchiver.decodeObjectForKey("lastCloudSync") as! NSDate!
-        allItems = unarchiver.decodeObjectForKey("allItems") as! [Item]
-        store = unarchiver.decodeObjectForKey("store") as! Store
-        sharingModel = unarchiver.decodeObjectForKey("sharingModel") as! SharingModel
+        aisles = unarchiver.decodeObjectForKey("aisles") as! [Aisle]
         unarchiver.finishDecoding()
       }
     }
   }
   
   // MARK: - CloudKit
-/*
+
+  /*
+  func addUpdate(type: String, item: Item) {
+  sharingModel.updateList.append(Update(type: type, item: item))
+  }
+  */
+  
+  /*
   func downloadOperation() -> CKQueryOperation {
     var predicate: NSPredicate!
     NSLog("Downloading!")
